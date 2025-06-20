@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Admin Dashboard</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet" />
+  <link rel="stylesheet" href="css/admin.css" />
+</head>
+<body>
+
+<div class="d-flex" id="wrapper">
+  <!-- Sidebar -->
+  <nav id="sidebar" class="bg-dark text-white d-flex flex-column" style="height: 100vh;">
+  <div class="sidebar-header text-center py-4 fw-bold fs-5 border-bottom">📚 Perpus Admin</div>
+
+  <!-- Menu Utama -->
+  <ul class="nav flex-column px-2 flex-grow-1">
+    <li class="nav-item">
+      <a href="#" class="nav-link text-white" data-page="dashboard"><i class="bi bi-speedometer2"></i> Dashboard</a>
+    </li>
+    <li class="nav-item">
+      <a href="#" class="nav-link text-white" data-page="tambah"><i class="bi bi-plus-circle"></i> Tambah Buku</a>
+    </li>
+    <li class="nav-item">
+      <a href="#" class="nav-link text-white" data-page="peminjaman"><i class="bi bi-arrow-left-right"></i> Peminjaman</a>
+    </li>
+    <li class="nav-item">
+      <a href="#" class="nav-link text-white" data-page="daftar"><i class="bi bi-journal-text"></i> Daftar Buku</a>
+    </li>
+    <li class="nav-item">
+      <a href="#" class="nav-link text-white" data-page="peminjam"><i class="bi bi-people-fill"></i> Daftar Peminjam</a>
+    </li>
+  </ul>
+
+  <!-- Logout di paling bawah -->
+  <div class="px-3 pb-3">
+    <a href="#" class="nav-link text-danger" id="logoutBtn">
+      <i class="bi bi-box-arrow-right"></i> Logout
+    </a>
+  </div>
+</nav>
+
+
+  <!-- Page Content -->
+  <div id="page-content-wrapper" class="flex-grow-1">
+    <nav class="navbar navbar-expand-lg navbar-light bg-light border-bottom px-4">
+      <button class="btn btn-outline-secondary" id="menu-toggle">☰</button>
+      <span class="ms-3 fw-semibold">Dashboard Admin</span>
+    </nav>
+
+    <div class="container-fluid p-4" id="mainContent">
+      <h4>Selamat Datang Admin!</h4>
+      <p>Pilih menu di samping kiri untuk mulai mengelola data.</p>
+    </div>
+  </div>
+</div>
+
+<script src="js/dashboard.js"></script>
+<script src="js/render.js"></script>
+</body>
+</html>
