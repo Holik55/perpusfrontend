@@ -71,6 +71,10 @@
           <label for="nisn" class="form-label">NISN</label>
           <input type="text" class="form-control" id="nisn" required>
         </div>
+        <div class="col-md-6">
+          <label for="judul_buku" class="form-label">Judul Buku</label>
+          <input type="text" class="form-control" id="judul_buku" required>
+        </div>
         <div class="col-md-4">
           <label for="nama" class="form-label">Nama</label>
           <input type="text" class="form-control" id="nama" required>
@@ -107,6 +111,7 @@ case "peminjam":
             <tr>
               <th>ID</th>
               <th>NISN</th>
+              <th>Judul Buku</th>
               <th>Nama</th>
               <th>Kelas</th>
               <th>Tgl Pinjam</th>

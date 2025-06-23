@@ -204,12 +204,14 @@ async function loadDashboardStats() {
 async function handlePeminjamanSubmit(e) {
   e.preventDefault();
   const data = {
-    nisn: document.getElementById("nisn").value,
-    nama: document.getElementById("nama").value,
-    kelas: document.getElementById("kelas").value,
-    tanggal_pinjam: document.getElementById("tanggal_pinjam").value,
-    tanggal_kembali: document.getElementById("tanggal_kembali").value,
-  };
+  nisn: document.getElementById("nisn").value,
+  nama: document.getElementById("nama").value,
+  kelas: document.getElementById("kelas").value,
+  tanggal_pinjam: document.getElementById("tanggal_pinjam").value,
+  tanggal_kembali: document.getElementById("tanggal_kembali").value,
+  judul_buku: document.getElementById("judul_buku").value
+};
+
 
   try {
     const res = await fetch("http://localhost:3000/api/loans", {
@@ -234,24 +236,33 @@ async function loadPeminjaman() {
     const res = await fetch("http://localhost:3000/api/loans");
     const data = await res.json();
     const tbody = document.getElementById("tabelPeminjaman");
+    function formatTanggal(isoDate) {
+      if (!isoDate) return "-";
+      const d = new Date(isoDate);
+      return d.toLocaleDateString("id-ID", {
+        day: '2-digit', month: '2-digit', year: '2-digit'
+      });
+    }
 
     tbody.innerHTML = data.map((d) => `
-      <tr>
-        <td>${d.id}</td>
-        <td>${d.nisn}</td>
-        <td>${d.nama}</td>
-        <td>${d.kelas}</td>
-        <td>${d.tanggal_pinjam}</td>
-        <td>${d.tanggal_kembali}</td>
-        <td>${d.return_date ? "Sudah" : "Belum"}</td>
-        <td>
-          ${!d.return_date
-            ? `<button class="btn btn-sm btn-success" onclick="konfirmasiPengembalian(${d.id})">Tandai Sudah</button>`
-            : `<span class="text-muted">Selesai</span>`
-          }
-        </td>
-      </tr>
-    `).join("");
+  <tr>
+    <td>${d.id}</td>
+    <td>${d.nisn}</td>
+    <td>${d.judul_buku}</td>
+    <td>${d.nama}</td>
+    <td>${d.kelas}</td>
+    <td>${formatTanggal(d.tanggal_pinjam)}</td>
+    <td>${formatTanggal(d.tanggal_kembali)}</td>
+    <td>${d.return_date ? "Sudah" : "Belum"}</td>
+    <td>
+      ${!d.return_date
+        ? `<button class="btn btn-sm btn-success" onclick="konfirmasiPengembalian(${d.id})">Tandai Sudah</button>`
+        : `<span class="text-muted">Selesai</span>`
+      }
+    </td>
+  </tr>
+`).join("");
+
   } catch (err) {
     console.error(err);
     alert("Gagal memuat data peminjaman");
