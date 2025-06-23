@@ -190,10 +190,12 @@ async function loadDashboardStats() {
 
     const totalStok = books.reduce((sum, book) => sum + (book.stok || 0), 0);
     const kategoriSet = new Set(books.map(b => b.kategori));
+    const judulSet = new Set(books.map(b => b.title)); // <- total judul unik
 
     document.getElementById("totalBuku").textContent = totalStok;
     document.getElementById("totalPeminjaman").textContent = loans.length;
     document.getElementById("totalKategori").textContent = kategoriSet.size;
+    document.getElementById("totalJudul").textContent = judulSet.size;
   } catch (error) {
     console.error("Gagal memuat statistik:", error);
   }

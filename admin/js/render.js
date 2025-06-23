@@ -174,8 +174,8 @@ case "peminjam":
     <h2 class="mb-4 text-primary fw-bold"><i class="bi bi-speedometer2 me-2"></i>Dashboard</h2>
 
     <div class="row g-4">
-      <div class="col-md-4">
-        <div class="card shadow border-0 bg-gradient bg-primary text-white">
+      <div class="col-md-6">
+        <div class="card shadow border-0 bg-gradient bg-primary text-white h-100">
           <div class="card-body d-flex flex-column align-items-start">
             <div class="mb-2"><i class="bi bi-book fs-3"></i></div>
             <h5 class="card-title">Total Buku</h5>
@@ -183,9 +183,17 @@ case "peminjam":
           </div>
         </div>
       </div>
-
-      <div class="col-md-4">
-        <div class="card shadow border-0 bg-gradient bg-success text-white">
+      <div class="col-md-6">
+        <div class="card shadow border-0 bg-gradient bg-info text-white h-100">
+          <div class="card-body d-flex flex-column align-items-start">
+            <div class="mb-2"><i class="bi bi-journal-text fs-3"></i></div>
+            <h5 class="card-title">Total Judul</h5>
+            <p class="card-text fs-3 fw-semibold" id="totalJudul">...</p>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="card shadow border-0 bg-gradient bg-success text-white h-100">
           <div class="card-body d-flex flex-column align-items-start">
             <div class="mb-2"><i class="bi bi-journal-bookmark fs-3"></i></div>
             <h5 class="card-title">Total Peminjaman</h5>
@@ -193,9 +201,8 @@ case "peminjam":
           </div>
         </div>
       </div>
-
-      <div class="col-md-4">
-        <div class="card shadow border-0 bg-gradient bg-warning text-dark">
+      <div class="col-md-6">
+        <div class="card shadow border-0 bg-gradient bg-warning text-dark h-100">
           <div class="card-body d-flex flex-column align-items-start">
             <div class="mb-2"><i class="bi bi-tags fs-3"></i></div>
             <h5 class="card-title">Kategori Tersedia</h5>
@@ -208,6 +215,7 @@ case "peminjam":
   `;
   loadDashboardStats();
   break;
+
 
 
 
