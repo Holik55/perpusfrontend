@@ -26,6 +26,7 @@ async function handleFormSubmit(event) {
     kategori: formData.get("kategori"),
     bahasa: formData.get("bahasa"),
     halaman: parseInt(formData.get("halaman")),
+    stok: parseInt(formData.get("stok")),
     no_rak: formData.get("no_rak"),
     cover_image_url: formData.get("cover_image_url"),
   };
@@ -89,6 +90,8 @@ async function loadBooks() {
         <td>${book.kategori}</td>
         <td>${book.bahasa}</td>
         <td>${book.halaman}</td>
+        <td>${book.stok}</td>
+        <td>${new Date(book.created_at).toLocaleDateString()}</td>
         <td>${book.no_rak}</td>
         <td>
           <button class="btn btn-sm btn-warning" onclick="editBook(${book.id})">Edit</button>
@@ -125,6 +128,7 @@ form.querySelector("#thnterbit").value = book.thnterbit;
 form.querySelector("#kategori").value = book.kategori;
 form.querySelector("#bahasa").value = book.bahasa;
 form.querySelector("#halaman").value = book.halaman;
+form.querySelector("#stok").value = book.stok;
 form.querySelector("#no_rak").value = book.no_rak;
 value = book.cover_image_url;
 
@@ -180,18 +184,21 @@ async function loadDashboardStats() {
       fetch("http://localhost:3000/api/books"),
       fetch("http://localhost:3000/api/loans")
     ]);
+
     const books = await booksRes.json();
     const loans = await loansRes.json();
 
+    const totalStok = books.reduce((sum, book) => sum + (book.stok || 0), 0);
     const kategoriSet = new Set(books.map(b => b.kategori));
 
-    document.getElementById("totalBuku").textContent = books.length;
+    document.getElementById("totalBuku").textContent = totalStok;
     document.getElementById("totalPeminjaman").textContent = loans.length;
     document.getElementById("totalKategori").textContent = kategoriSet.size;
   } catch (error) {
     console.error("Gagal memuat statistik:", error);
   }
 }
+
 
 //Peminjaman
 async function handlePeminjamanSubmit(e) {

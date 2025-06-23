@@ -43,6 +43,10 @@
               <input type="number" class="form-control" id="halaman" name="halaman" required>
             </div>
             <div class="col-md-4">
+              <label for="stok" class="form-label">Stok Buku</label>
+              <input type="number" class="form-control" id="stok" name="stok" required>
+            </div>
+            <div class="col-md-4">
               <label for="no_rak" class="form-label">Nomor Rak</label>
               <input type="text" class="form-control" id="no_rak" name="no_rak" required>
             </div>
@@ -141,10 +145,13 @@ case "peminjam":
                 <th>Kategori</th>
                 <th>Bahasa</th>
                 <th>Halaman</th>
+                <th>Stok</th>
+                <th>Tanggal</th>
                 <th>Rak</th>
                 <th>Aksi</th>
               </tr>
             </thead>
+
 
             <tbody id="tabelBuku">
               <!-- Data buku akan dimuat di sini -->
@@ -157,40 +164,46 @@ case "peminjam":
       break;
 
       case "dashboard":
-      mainContent.innerHTML = `
-      <div class="container py-4">
-        <h2 class="mb-3"><i class="bi bi-graph-up"></i> Dashboard</h2>
+  mainContent.innerHTML = `
+  <div class="container py-4">
+    <h2 class="mb-4 text-primary fw-bold"><i class="bi bi-speedometer2 me-2"></i>Dashboard</h2>
 
-        <div class="row g-4">
-          <div class="col-md-4">
-            <div class="card shadow-sm border-0">
-              <div class="card-body">
-                <h5 class="card-title">Total Buku</h5>
-                <p class="card-text fs-4" id="totalBuku">...</p>
-              </div>
-            </div>
-          </div>
-          <div class="col-md-4">
-            <div class="card shadow-sm border-0">
-              <div class="card-body">
-                <h5 class="card-title">Total Peminjaman</h5>
-                <p class="card-text fs-4" id="totalPeminjaman">...</p>
-              </div>
-            </div>
-          </div>
-          <div class="col-md-4">
-            <div class="card shadow-sm border-0">
-              <div class="card-body">
-                <h5 class="card-title">Kategori Tersedia</h5>
-                <p class="card-text fs-4" id="totalKategori">...</p>
-              </div>
-            </div>
+    <div class="row g-4">
+      <div class="col-md-4">
+        <div class="card shadow border-0 bg-gradient bg-primary text-white">
+          <div class="card-body d-flex flex-column align-items-start">
+            <div class="mb-2"><i class="bi bi-book fs-3"></i></div>
+            <h5 class="card-title">Total Buku</h5>
+            <p class="card-text fs-3 fw-semibold" id="totalBuku">...</p>
           </div>
         </div>
       </div>
-      `;
-      loadDashboardStats();
-      break;
+
+      <div class="col-md-4">
+        <div class="card shadow border-0 bg-gradient bg-success text-white">
+          <div class="card-body d-flex flex-column align-items-start">
+            <div class="mb-2"><i class="bi bi-journal-bookmark fs-3"></i></div>
+            <h5 class="card-title">Total Peminjaman</h5>
+            <p class="card-text fs-3 fw-semibold" id="totalPeminjaman">...</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-4">
+        <div class="card shadow border-0 bg-gradient bg-warning text-dark">
+          <div class="card-body d-flex flex-column align-items-start">
+            <div class="mb-2"><i class="bi bi-tags fs-3"></i></div>
+            <h5 class="card-title">Kategori Tersedia</h5>
+            <p class="card-text fs-3 fw-semibold" id="totalKategori">...</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  `;
+  loadDashboardStats();
+  break;
+
 
 
 
