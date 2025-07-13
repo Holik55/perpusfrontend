@@ -5,7 +5,7 @@ document.getElementById('registerForm').addEventListener('submit', async functio
   const password = document.getElementById('password').value;
 
   try {
-    const res = await fetch('http://perpustakaan-production-f0df.up.railway.app/api/auth/register', {
+    const res = await fetch('https://perpustakaan-production-969d.up.railway.app/api/auth/register', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'

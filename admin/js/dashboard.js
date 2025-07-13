@@ -37,8 +37,8 @@ async function handleFormSubmit(event) {
 
   try {
     const url = isEditMode
-      ? `http://perpustakaan-production-f0df.up.railway.app/api/books/${editBookId}`
-      : "http://perpustakaan-production-f0df.up.railway.app/api/books";
+      ? `https://perpustakaan-production-969d.up.railway.app/api/books/${editBookId}`
+      : "https://perpustakaan-production-969d.up.railway.app/api/books";
     const method = isEditMode ? "PUT" : "POST";
 
     const response = await fetch(url, {
@@ -75,7 +75,7 @@ function getDriveImageUrl(originalUrl) {
 
 async function loadBooks() {
   try {
-    const response = await fetch("http://perpustakaan-production-f0df.up.railway.app/api/books");
+    const response = await fetch("https://perpustakaan-production-969d.up.railway.app/api/books");
     const books = await response.json();
     const tabelBuku = document.getElementById("tabelBuku");
     tabelBuku.innerHTML = books.map((book) => `
@@ -106,7 +106,7 @@ async function loadBooks() {
 
 async function editBook(id) {
   try {
-    const response = await fetch(`http://perpustakaan-production-f0df.up.railway.app/api/books/${id}`);
+    const response = await fetch(`https://perpustakaan-production-969d.up.railway.app/api/books/${id}`);
     const book = await response.json();
     if (!response.ok) throw new Error(book.message || "Gagal mengambil data buku");
 
@@ -151,7 +151,7 @@ function cancelEdit() {
 async function deleteBook(id) {
   if (confirm("Yakin ingin menghapus buku ini?")) {
     try {
-      const response = await fetch(`http://perpustakaan-production-f0df.up.railway.app/api/books/${id}`, {
+      const response = await fetch(`https://perpustakaan-production-969d.up.railway.app/api/books/${id}`, {
         method: "DELETE",
       });
       const result = await response.json();
@@ -181,8 +181,8 @@ document.getElementById("logoutBtn").addEventListener("click", function (e) {
 async function loadDashboardStats() {
   try {
     const [booksRes, loansRes] = await Promise.all([
-      fetch("http://perpustakaan-production-f0df.up.railway.app/api/books"),
-      fetch("http://perpustakaan-production-f0df.up.railway.app/api/loans")
+      fetch("https://perpustakaan-production-969d.up.railway.app/api/books"),
+      fetch("https://perpustakaan-production-969d.up.railway.app/api/loans")
     ]);
 
     const books = await booksRes.json();
@@ -216,7 +216,7 @@ async function handlePeminjamanSubmit(e) {
 
 
   try {
-    const res = await fetch("http://perpustakaan-production-f0df.up.railway.app/api/loans", {
+    const res = await fetch("https://perpustakaan-production-969d.up.railway.app/api/loans", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(data),
@@ -235,7 +235,7 @@ async function handlePeminjamanSubmit(e) {
 
 async function loadPeminjaman() {
   try {
-    const res = await fetch("http://perpustakaan-production-f0df.up.railway.app/api/loans");
+    const res = await fetch("https://perpustakaan-production-969d.up.railway.app/api/loans");
     const data = await res.json();
     const tbody = document.getElementById("tabelPeminjaman");
     function formatTanggal(isoDate) {
@@ -275,7 +275,7 @@ async function loadPeminjaman() {
 async function konfirmasiPengembalian(id) {
   if (confirm("Yakin ingin menandai peminjaman ini sebagai sudah dikembalikan?")) {
     try {
-      const response = await fetch(`http://perpustakaan-production-f0df.up.railway.app/api/loans/${id}/return`, {
+      const response = await fetch(`https://perpustakaan-production-969d.up.railway.app/api/loans/${id}/return`, {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",
