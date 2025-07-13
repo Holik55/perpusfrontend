@@ -33,7 +33,7 @@ document.getElementById('searchForm').addEventListener('submit', async function 
 
   try {
     // Ambil semua buku dari API
-    const res = await fetch('http://perpustakaan-production-1588.up.railway.app/api/books');
+    const res = await fetch('http://perpustakaan-production-f0df.up.railway.app/api/books');
     const books = await res.json();
 
     // Filter hasil berdasarkan pencocokan Boyer-Moore pada judul, pengarang, atau kategori
