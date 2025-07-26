@@ -80,7 +80,7 @@ async function loadBooks() {
     const tabelBuku = document.getElementById("tabelBuku");
     tabelBuku.innerHTML = books.map((book) => `
       <tr>
-        <td>${book.id}</td>
+        <td>${book.ddc}</td>
         <td><img src="${getDriveImageUrl(book.cover_image_url)}" alt="Cover" width="50"></td>
         <td>${book.isbn}</td>
         <td>${book.title}</td>
@@ -94,8 +94,8 @@ async function loadBooks() {
         <td>${book.createdAt ? new Date(book.createdAt).toLocaleDateString('id-ID') : '-'}</td>
         <td>${book.no_rak}</td>
         <td>
-          <button class="btn btn-sm btn-warning" onclick="editBook(${book.id})">Edit</button>
-          <button class="btn btn-sm btn-danger" onclick="deleteBook(${book.id})">Hapus</button>
+          <button class="btn btn-sm btn-warning" onclick="editBook(${book.ddc})">Edit</button>
+          <button class="btn btn-sm btn-danger" onclick="deleteBook(${book.ddc})">Hapus</button>
         </td>
       </tr>
     `).join("");
@@ -104,15 +104,15 @@ async function loadBooks() {
   }
 }
 
-async function editBook(id) {
+async function editBook(ddc) {
   try {
-    const response = await fetch(`https://perpustakaan-production-969d.up.railway.app/api/books/${id}`);
+    const response = await fetch(`https://perpustakaan-production-969d.up.railway.app/api/books/${ddc}`);
     const book = await response.json();
     if (!response.ok) throw new Error(book.message || "Gagal mengambil data buku");
 
     // Aktifkan mode edit
     isEditMode = true;
-    editBookId = id;
+    editBookId = ddc;
 
     // Render ulang halaman untuk memperbarui judul form dan tombol
     renderPage("tambah");
@@ -148,10 +148,10 @@ function cancelEdit() {
   renderPage("tambah"); // Render ulang untuk kembali ke mode tambah
 }
 
-async function deleteBook(id) {
+async function deleteBook(ddc) {
   if (confirm("Yakin ingin menghapus buku ini?")) {
     try {
-      const response = await fetch(`https://perpustakaan-production-969d.up.railway.app/api/books/${id}`, {
+      const response = await fetch(`https://perpustakaan-production-969d.up.railway.app/api/books/${ddc}`, {
         method: "DELETE",
       });
       const result = await response.json();
