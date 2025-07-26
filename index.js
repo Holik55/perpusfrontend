@@ -1,5 +1,7 @@
-// Tambahkan algoritma Boyer-Moore
 function boyerMoore(text, pattern) {
+  text = text.toLowerCase();
+  pattern = pattern.toLowerCase();
+
   const n = text.length;
   const m = pattern.length;
 
@@ -11,17 +13,18 @@ function boyerMoore(text, pattern) {
   let s = 0;
   while (s <= (n - m)) {
     let j = m - 1;
-    while (j >= 0 && pattern[j].toLowerCase() === text[s + j]?.toLowerCase()) {
+    while (j >= 0 && pattern[j] === text[s + j]) {
       j--;
     }
 
     if (j < 0) {
-      return s;
+      return s; // ditemukan
     } else {
-      s += Math.max(1, j - badChar[text.charCodeAt(s + j)] || 0);
+      const badCharIndex = text.charCodeAt(s + j);
+      s += Math.max(1, j - (badChar[badCharIndex] ?? -1));
     }
   }
-  return -1;
+  return -1; // tidak ditemukan
 }
 
 // Event listener pencarian
